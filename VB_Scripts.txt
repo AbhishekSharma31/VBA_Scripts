@@ -1,0 +1,259 @@
+'SAMPLE V.B Scripts
+‘By Abhishek Sharma 06/15/2016
+
+
+Sub Button1_Click()
+MsgBox "Hi"
+
+End Sub
+
+
+
+' This Script is invoked after successful login
+' Written by : TutorialsPoint
+' Return Value : True / False
+Rem This Script is written to Validate the Entered Input
+
+
+Function MessageBox_Demo()
+'Message Box with just prompt message MsgBox("Welcome")
+'Message Box with title, yes no and cancel Butttons
+a = MsgBox("Do you like blue color?", 3, "Choose options")
+' Assume that you press No Button
+MsgBox ("The Value of a is " & a)
+End Function
+
+'Function findArea()
+'Dim Length As Double
+'Dim Width As Double
+'Length = InputBox("Enter Length ", "Enter a Number")
+'Width = InputBox("Enter Width", "Enter a Number")
+'findArea = Length * Width
+'End Function
+
+Private Sub Variables_demo_Click()
+Dim password As String
+password = "Admin#1"
+Dim num As Integer
+num = 1234
+Dim BirthDay As Date
+BirthDay = 30 / 10 / 2020
+MsgBox "Passowrd is " & password & Chr(10) & "Value of num is " & num & Chr(10) & "Value of Birthday is " & BirthDay
+End Sub
+
+
+
+
+Sub Constant_demo()
+Const MyInteger As Integer = 42
+Const myDate As Date = #2/2/2020#
+Const myDay As String = "Sunday"
+MsgBox "Integer is " & MyInteger & Chr(10) & "myDate is " & myDate & Chr(10) & "myDay is " & myDay
+End Sub
+
+
+Private Sub Constant_demo_Click()
+   Dim a As Integer
+   a = 5
+   
+   Dim b As Integer
+   b = 10
+   
+   Dim c As Double
+   
+   c = a + b
+   MsgBox ("Addition Result is " & c)
+   
+   c = a - b
+   MsgBox ("Subtraction Result is " & c)
+   
+   c = a * b
+   MsgBox ("Multiplication Result is " & c)
+   
+   c = b / a
+   MsgBox ("Division Result is " & c)
+   
+   c = b Mod a
+   MsgBox ("Modulus Result is " & c)
+   
+   c = b ^ a
+   MsgBox ("Exponentiation Result is " & c)
+End Sub
+
+
+Private Sub Constant_Click()
+
+  Dim a: a = 10
+  Dim b: b = 20
+  Dim c
+
+  If a = b Then
+    MsgBox ("Operator Line 1 : True")
+  Else
+    MsgBox ("Operator Line 1 : False")
+  End If
+
+  If a <> b Then
+    MsgBox ("Operator Line 2 : True")
+  Else
+    MsgBox ("Operator Line 2 : False")
+  End If
+
+  If a > b Then
+    MsgBox ("Operator Line 3 : True")
+  Else
+    MsgBox ("Operator Line 3 : False")
+  End If
+
+  If a < b Then
+    MsgBox ("Operator Line 4 : True")
+  Else
+    MsgBox ("Operator Line 4 : False")
+  End If
+
+  If a >= b Then
+    MsgBox ("Operator Line 5 : True")
+  Else
+    MsgBox ("Operator Line 5 : False")
+  End If
+
+  If a <= b Then
+    MsgBox ("Operator Line 6 : True")
+  Else
+    MsgBox ("Operator Line 6 : False")
+  End If
+
+End Sub
+
+
+
+Private Sub Constant1_Click()
+  Dim a As Integer
+  a = 10
+  Dim b As Integer
+  b = 0
+      
+  If a <> 0 And b <> 0 Then
+     MsgBox ("AND Operator Result is : True")
+  Else
+     MsgBox ("AND Operator Result is : False")
+  End If
+
+  If a <> 0 Or b <> 0 Then
+     MsgBox ("OR Operator Result is : True")
+  Else
+     MsgBox ("OR Operator Result is : False")
+  End If
+
+  If Not (a <> 0 Or b <> 0) Then
+     MsgBox ("NOT Operator Result is : True")
+  Else
+     MsgBox ("NOT Operator Result is : False")
+  End If
+
+  If (a <> 0 Xor b <> 0) Then
+     MsgBox ("XOR Operator Result is : True")
+  Else
+     MsgBox ("XOR Operator Result is : False")
+  End If
+End Sub
+
+
+
+Private Sub Constant_demo1_Click()
+  Dim a As Integer: a = 5
+  Dim b As Integer: b = 10
+  Dim c As Integer
+
+  c = a + b
+  MsgBox ("Concatenated value:1 is " & c) 'Numeric addition
+  c = a & b
+  MsgBox ("Concatenated value:2 is " & c) 'Concatenate two numbers
+End Sub
+
+
+
+
+Private Sub if_demo_Click()
+    Dim x As Integer
+    Dim y As Integer
+    
+    x = 234
+    y = 32
+    
+    If x > y Then
+       MsgBox "X is Greater than Y"
+    End If
+End Sub
+
+
+'Function findArea(Length As Double, Optional Width As Variant)
+'If IsMissing(Width) Then
+'findArea = Length * Length
+'Else
+'findArea = Length * Width
+'End If
+'End Function
+
+
+
+Sub Area(x As Double, y As Double)
+MsgBox x * y
+End Sub
+
+
+Function findArea(Length As Double, Width As Variant)
+Area Length, Width ' To Calculate Area 'area' sub proc is called
+End Function
+
+
+
+Private Sub Worksheet_BeforeDoubleClick(ByVal Target As Range, Cancel As Boolean)
+MsgBox "Before Double Click"
+End Sub
+
+
+Private Sub Workbook_NewSheet(ByVal Sh As Object)
+MsgBox "New Sheet Created Successfully"
+End Sub
+
+
+
+
+
+
+
+Sub fn_write_to_text_Click()
+Dim FilePath As String
+  Dim CellData As String
+  Dim LastCol As Long
+  Dim LastRow As Long
+  
+  Dim fso As FileSystemObject
+  Set fso = New FileSystemObject
+  Dim stream As TextStream
+  
+  LastCol = ActiveSheet.UsedRange.Columns.Count
+  LastRow = ActiveSheet.UsedRange.Rows.Count
+    
+  ' Create a TextStream.
+  Set stream = fso.OpenTextFile("/Users/Abhishek/Desktop/Support.log", ForWriting, True)
+  
+  CellData = ""
+  
+  For i = 1 To LastRow
+      For j = 1 To LastCol
+      CellData = Trim(ActiveCell(i, j).Value)
+      stream.WriteLine "The Value at location (" & i & "," & j & ")" & CellData
+      Next j
+  Next i
+  
+  stream.Close
+  MsgBox ("Job Done")
+End Sub
+
+
+
+
+
+
